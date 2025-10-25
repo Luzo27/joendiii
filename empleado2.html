@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empleado - Joen' Di</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* CSS limpio premium */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f3ebe1,#ffe8d6); color:#5c3d2e; overflow-x:hidden; line-height:1.6;}
+nav{background:white;padding:14px 24px;display:flex;justify-content:center;align-items:center;box-shadow:0 6px 18px rgba(0,0,0,0.08);position:relative;border-radius:10px;}
+nav div{font-weight:700;font-size:20px;}
+.hero{width:100%;height:260px;background:url('img/verduras1.jpg') center/cover no-repeat;border-radius:20px;margin:20px 0;display:flex;justify-content:center;align-items:center;font-size:28px;font-weight:600;color:white;text-shadow:2px 2px 12px rgba(0,0,0,0.6);}
+.agregar{background:white;padding:20px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,0.08);margin:0 auto 40px auto;display:flex;flex-direction:column;gap:14px;width:320px;transition:.3s;}
+.agregar h3{background:linear-gradient(45deg,#d97b5d,#b35f3d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;font-size:22px;font-weight:700;}
+.agregar input{padding:10px;border-radius:10px;border:1px solid #ccc;font-size:16px;}
+.agregar button{padding:12px;border:0;border-radius:12px;background:linear-gradient(45deg,#d9b382,#b35f3d);color:white;font-weight:600;cursor:pointer;transition:.3s;}
+.agregar button:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.18);}
+@media(max-width:420px){.agregar{width:90%;}.hero{font-size:22px;}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC78WB2HHE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RC78WB2HHE');
+</script>
+</head>
+<body>
+
+<nav>
+  <div>Joen' Di — Empleado</div>
+</nav>
+
+<div class="hero">
+  ¡Agrega tus productos de Frutas y Verduras!
+</div>
+
+<div class="agregar">
+  <h3>Agregar Producto</h3>
+  <input id="nombreProd" placeholder="Nombre">
+  <input id="catProd" placeholder="Categoría">
+  <input id="precioProd" placeholder="Precio" type="number">
+  <input type="file" id="imgProd" accept="image/*">
+  <button id="btnAgregar">Agregar</button>
+</div>
+
+<script>
+document.getElementById('btnAgregar').addEventListener('click', async () => {
+  const nombre = document.getElementById('nombreProd').value.trim();
+  const cat = document.getElementById('catProd').value.trim();
+  const precio = parseFloat(document.getElementById('precioProd').value);
+  const file = document.getElementById('imgProd').files[0];
+
+  if (!nombre || !cat || isNaN(precio) || !file) {
+    alert('Completa todos los campos y selecciona una imagen');
+    return;
+  }
+
+  // Convertir la imagen a base64 para enviarla al servidor
+  const reader = new FileReader();
+  reader.onload = async function(e) {
+    const imgBase64 = e.target.result;
+
+    try {
+      const response = await fetch('http://localhost:3000/agregar-producto', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({nombre, cat, precio, img: imgBase64})
+      });
+      const data = await response.json();
+      if (data.success) {
+        alert('Producto agregado correctamente y disponible para clientes');
+        document.getElementById('nombreProd').value='';
+        document.getElementById('catProd').value='';
+        document.getElementById('precioProd').value='';
+        document.getElementById('imgProd').value='';
+      } else {
+        alert('Error al agregar producto: ' + data.error);
+      }
+    } catch(err) {
+      alert('Error de conexión con el servidor');
+      console.error(err);
+    }
+  };
+  reader.readAsDataURL(file);
+});
+</script>
+
+</body>
+</html>

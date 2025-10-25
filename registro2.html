@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro - Joen' Di</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(135deg,#f3ebe1,#ffe8d6);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:#5c3d2e;
+  }
+
+  .card{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    width:340px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.1);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    animation:fadeIn .6s ease;
+  }
+
+  h2{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:5px;
+    background:linear-gradient(45deg,#d97b5d,#b35f3d);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shine 3s infinite;
+  }
+
+  @keyframes shine{
+    0%{filter:brightness(1);}
+    50%{filter:brightness(1.3);}
+    100%{filter:brightness(1);}
+  }
+
+  input{
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #d2c6bb;
+    font-size:16px;
+  }
+
+  button{
+    padding:12px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(45deg,#d9b382,#b37d5d);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-size:17px;
+    transition:.2s;
+  }
+
+  button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  .preview{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #d9b382;
+    margin:0 auto;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+  }
+
+  @media(max-width:420px){
+    .card{
+      width:85%;
+    }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC78WB2HHE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RC78WB2HHE');
+</script>
+</head>
+<body>
+
+  <form id="registroForm" class="card">
+    <h2>Registro / Login</h2>
+
+    <img id="previewImg" class="preview" src="img/perfiljoendi.jpg">
+
+    <input id="foto" type="file" accept="image/*">
+    <input id="nombre" placeholder="Nombre" required>
+    <input id="apellidos" placeholder="Apellidos" required>
+    <input id="email" placeholder="Email" type="email" required>
+    <input id="edad" placeholder="Edad" type="number" required>
+    <input id="rut" placeholder="Cédula o RUT" required>
+    <input id="clave" placeholder="Clave" type="password" required>
+
+    <button type="submit">Registrarse</button>
+  </form>
+
+<script>
+let imgPreview = document.getElementById("previewImg");
+let fileFoto = document.getElementById("foto");
+
+fileFoto.addEventListener("change", ()=>{
+  const archivo = fileFoto.files[0];
+  if(archivo){
+    imgPreview.src = URL.createObjectURL(archivo);
+  }
+});
+
+document.getElementById('registroForm').addEventListener('submit', e=>{
+  e.preventDefault();
+
+  const nombre = document.getElementById('nombre').value.trim();
+  const apellidos = document.getElementById('apellidos').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const edad = document.getElementById('edad').value.trim();
+  const rut = document.getElementById('rut').value.trim();
+  const clave = document.getElementById('clave').value.trim();
+  const fotoSrc = imgPreview.src;
+
+  let tipo = 'cliente';
+  if(clave.toLowerCase() === 'empleado123') tipo='empleado';
+  else if(clave.toLowerCase() === 'cliente123') tipo='cliente';
+  else { alert('Clave incorrecta'); return; }
+
+  const user = {nombre, apellidos, email, edad, rut, tipo, foto:fotoSrc};
+  localStorage.setItem('user', JSON.stringify(user));
+
+  if(tipo==='empleado') location.href='empleado2.html';
+  else location.href='cliente2.html';
+});
+</script>
+
+</body>
+</html>

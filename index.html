@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienvenid❤️ a Joen' Di</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #ffe8d6, #f3ebe1, #e8d0b7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #5c3d2e;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  /* --- Animación logo flotante --- */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* --- BRILLO EFECTO --- */
+  @keyframes shine {
+    0% { box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); }
+    100% { box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); }
+  }
+
+  .logo {
+    width: 290px;
+    height: 290px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 6px solid rgba(255,255,255,0.7);
+    animation: float 4s ease-in-out infinite, shine 2.5s ease-in-out infinite;
+    transition: transform 0.3s;
+  }
+
+  .logo:hover {
+    transform: scale(1.07);
+  }
+
+  /* --- TEXTO ANIMADO --- */
+  h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #d97b5d, #b35f3d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #b35f3d;
+    animation: typing 3s steps(20) forwards, blink .6s step-end infinite alternate;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 19ch; }
+  }
+
+  @keyframes blink {
+    from { border-color: transparent; }
+    to { border-color: #b35f3d; }
+  }
+
+  p {
+    font-size: 19px;
+    width: 70%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+
+  .btn-container {
+    display: flex;
+    gap: 15px;
+  }
+
+  button {
+    padding: 14px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+    color: #5c3d2e;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid #d9b382;
+  }
+
+  button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+  }
+
+  /* ---- FRUTAS FLOTANDO ---- */
+  .fruta {
+    position: absolute;
+    width: 60px;
+    animation: moveUp 12s linear infinite;
+    opacity: 0.9;
+  }
+
+  @keyframes moveUp {
+    0%   { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-120vh) rotate(360deg); }
+  }
+
+  @media (max-width: 500px) {
+    h1 { font-size: 38px; }
+    .logo { width: 220px; height: 220px; }
+    button { font-size: 16px; padding: 12px 24px; }
+    p { font-size: 16px; width: 85%; }
+    .btn-container { flex-direction: column; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC78WB2HHE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RC78WB2HHE');
+</script>
+</head>
+
+<body>
+
+<!-- FRUTAS flotando -->
+<img src="img/frutica.png" class="fruta" style="left:10%; animation-delay:0s;">
+<img src="img/frutica.png" class="fruta" style="left:35%; width:50px; animation-delay:2s;">
+<img src="img/frutica.png" class="fruta" style="left:60%; width:55px; animation-delay:4s;">
+<img src="img/frutica.png" class="fruta" style="left:80%; animation-delay:6s;">
+
+<img src="img/perfiljoendi.jpg" alt="Logo Joen' Di" class="logo">
+
+<h1>Bienvenid@ a Joen' Di</h1>
+
+<p>
+Descubrí productos únicos dentro de nuestro mercadito digital 🍎✨.
+¡Registrate y comenzá a explorar!
+</p>
+
+<div class="btn-container">
+  <button onclick="location.href='registro2.html'">Registrarse</button>
+</div>
+
+</body>
+</html>

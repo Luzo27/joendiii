@@ -1,0 +1,22 @@
+[
+  {"id":1,"nombre":"Manzana","cat":"frutas","precio":120},
+  {"id":2,"nombre":"Banana","cat":"frutas","precio":90},
+  {"id":3,"nombre":"Lechuga","cat":"verduras","precio":70},
+  {"id":4,"nombre":"Tomate","cat":"verduras","precio":85},
+  {"id":5,"nombre":"Leche","cat":"lacteos","precio":180},
+  {"id":6,"nombre":"Aceite","cat":"condimentos","precio":650},
+  {"id":7,"nombre":"Zanahoria","cat":"verduras","precio":60},
+  {"id":8,"nombre":"Pera","cat":"frutas","precio":110},
+  {"id":9,"nombre":"Queso","cat":"lacteos","precio":420},
+  {"id":10,"nombre":"Cebolla","cat":"verduras","precio":50},
+  {"id":11,"nombre":"Pimiento","cat":"verduras","precio":95},
+  {"id":12,"nombre":"Naranja","cat":"frutas","precio":100},
+  {"id":13,"nombre":"Mandarina","cat":"frutas","precio":95},
+  {"id":14,"nombre":"Yogur","cat":"lacteos","precio":150},
+  {"id":15,"nombre":"Manteca","cat":"lacteos","precio":250},
+  {"id":16,"nombre":"Sal","cat":"condimentos","precio":120},
+  {"id":17,"nombre":"Azúcar","cat":"condimentos","precio":80},
+  {"id":18,"nombre":"Ajo","cat":"condimentos","precio":40},
+  {"id":19,"nombre":"Pepino","cat":"verduras","precio":70},
+  {"id":20,"nombre":"Durazno","cat":"frutas","precio":130}
+]
